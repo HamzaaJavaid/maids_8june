@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:project_managment_app_for_maids_by_hamzajavaid/BLOC/New%20Task%20DropDown/dropDown_bloc.dart';
+import 'package:project_managment_app_for_maids_by_hamzajavaid/BLOC/New%20Task%20DropDown/dropDown_event.dart';
+import 'package:project_managment_app_for_maids_by_hamzajavaid/BLOC/New%20Task%20DropDown/dropDown_state.dart';
 import 'package:project_managment_app_for_maids_by_hamzajavaid/constants/constants.dart';
 import 'package:project_managment_app_for_maids_by_hamzajavaid/modals_variables/modals_var_info.dart';
 import 'package:project_managment_app_for_maids_by_hamzajavaid/network/baseAPINetwork.dart';
@@ -41,9 +45,10 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
             DropdownButton<bool>(
               value: _isCompleted,
               onChanged: (value) {
-                setState(() {
-                  _isCompleted = value!;
-                });
+
+               setState(() {
+                 _isCompleted = value!;
+               });
               },
               items: [
                 DropdownMenuItem<bool>(
@@ -86,7 +91,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                  Navigator.pop(context);
                  print(data);
                }
-               
+
 
 
 

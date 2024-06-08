@@ -10,19 +10,28 @@ import 'package:get/utils.dart';
 import 'package:project_managment_app_for_maids_by_hamzajavaid/network/baseAPINetwork.dart';
 import 'package:project_managment_app_for_maids_by_hamzajavaid/constants/constants.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController usernameController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   BaseAPINetwork BaseApi = BaseAPINetwork();
+
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
     constants.device_height =  MediaQuery.of(context).size.height ;
     constants.device_width =  MediaQuery.of(context).size.width ;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login Page'),
-      ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -31,18 +40,18 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: constants.device_height/10),
-                Container(
-                  width: constants.device_width/2,
-                  height: constants.device_height/10,
-                  decoration: BoxDecoration(
-                    //shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/logo.png'),
+                  SizedBox(height: constants.device_height/6),
+                  Container(
+                    width: constants.device_width/2,
+                    height: constants.device_height/10,
+                    decoration: BoxDecoration(
+                      //shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/images/logo.png'),
+                      ),
                     ),
                   ),
-                ),
                   SizedBox(height: constants.device_height/10),
                   Container(
                     decoration: BoxDecoration(
@@ -88,6 +97,11 @@ class LoginPage extends StatelessWidget {
                       String password = passwordController.text;
                       // Add your login logic here
 
+
+                      setState(() {
+                        loading = true;
+                      });
+
                       var data = await BaseAPINetwork().PostAPIwithHeader(
                           constants.login,
                           {
@@ -99,9 +113,17 @@ class LoginPage extends StatelessWidget {
                           }
                       );
                       if(data['message']=="Invalid credentials"){
+
+                        setState(() {
+                          loading = false;
+                        });
+
                         Get.snackbar("Warning", data!['message'] ,  backgroundColor: Colors.redAccent.withOpacity(0.6));
                       }
                       else if(data['id']!=0){
+                        setState(() {
+                          loading = false;
+                        });
                         Get.snackbar("Success", "Welcome Back" ,  backgroundColor: Colors.green.withOpacity(0.6));
 
                         vm_var.id = data['id'].toString();
@@ -111,19 +133,25 @@ class LoginPage extends StatelessWidget {
                         vm_var.authToken = data['token'].toString();
 
                         //print(vm_var.id);print(vm_var.name);print(vm_var.email);print(vm_var.authToken);print(vm_var.image);
+                        usernameController.clear();
+                        passwordController.clear();
+
 
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>mainDashbaord()));
 
                       }
 
 
+                      setState(() {
+                        loading = false;
+                      });
 
 
 
 
 
                     },
-                    child: const Text('Login',style: TextStyle(
+                    child:  loading==true ? CircularProgressIndicator(color: Colors.white,) : Text('Login',style: TextStyle(
                         color: Colors.white,fontSize: 21
                     ),),
                   ),
@@ -152,6 +180,6 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ),);
   }
 }
