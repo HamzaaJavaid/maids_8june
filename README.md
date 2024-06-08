@@ -36,12 +36,31 @@ To get started with this project, follow these steps:
 
 ## Screenshots
 
-Include screenshots or GIFs of your app in action here.
+
+- Login Screen
+<img width="466" alt="Screenshot 2024-06-09 at 12 24 24 AM" src="https://github.com/HamzaaJavaid/maids_8june/assets/115164085/834eabcb-b094-483a-be30-ec36f2eb1f55">
+
+- Main Dashboard
+<img width="466" alt="Screenshot 2024-06-09 at 12 25 11 AM" src="https://github.com/HamzaaJavaid/maids_8june/assets/115164085/2a10a906-e6a3-491f-82f2-e236fa6c3522">
+
+-View All Tasks Screen
+<img width="466" alt="Screenshot 2024-06-09 at 12 26 02 AM" src="https://github.com/HamzaaJavaid/maids_8june/assets/115164085/be0b3f5f-ddfb-45c2-a959-cf40d17c931f">
+
+- Create New Tasks Screen 
+<img width="466" alt="Screenshot 2024-06-09 at 12 26 40 AM" src="https://github.com/HamzaaJavaid/maids_8june/assets/115164085/9bdd5757-af95-4d5f-90c6-07bf2b416287">
+
+
+
+## Designed & Developed  By
+
+Hamza Javaid | Whatsapp:- 03431294211 | humjavaid@gmail.com
+
 
 ## Contributing
 
 Feel free to contribute to this project by opening issues or pull requests.
 
 ## License
+
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
